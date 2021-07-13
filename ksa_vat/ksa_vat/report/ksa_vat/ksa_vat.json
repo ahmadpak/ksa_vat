@@ -1,0 +1,22 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2021-07-13 08:54:38.000949",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2021-07-13 08:54:38.000949",
+ "modified_by": "Administrator",
+ "module": "KSA VAT",
+ "name": "KSA VAT",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "GL Entry",
+ "report_name": "KSA VAT",
+ "report_type": "Script Report",
+ "roles": []
+}
