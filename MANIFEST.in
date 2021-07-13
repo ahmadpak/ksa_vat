@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include ksa_vat *.css
+recursive-include ksa_vat *.csv
+recursive-include ksa_vat *.html
+recursive-include ksa_vat *.ico
+recursive-include ksa_vat *.js
+recursive-include ksa_vat *.json
+recursive-include ksa_vat *.md
+recursive-include ksa_vat *.png
+recursive-include ksa_vat *.py
+recursive-include ksa_vat *.svg
+recursive-include ksa_vat *.txt
+recursive-exclude ksa_vat *.pyc
