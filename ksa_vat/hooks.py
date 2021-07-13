@@ -173,3 +173,7 @@ user_data_fields = [
 # 	"ksa_vat.auth.validate"
 # ]
 
+fixtures = [
+	'Tax Category'
+]
+
