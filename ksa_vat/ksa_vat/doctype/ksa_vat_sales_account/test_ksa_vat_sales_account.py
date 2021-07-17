@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestKSAVATAccount(unittest.TestCase):
+class TestKSAVATSalesAccount(unittest.TestCase):
 	pass

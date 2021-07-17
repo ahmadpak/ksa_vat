@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "company",
-  "ksa_vat_accounts"
+  "ksa_vat_sales_accounts",
+  "ksa_vat_purchase_accounts"
  ],
  "fields": [
   {
@@ -20,16 +21,23 @@
    "unique": 1
   },
   {
-   "fieldname": "ksa_vat_accounts",
+   "fieldname": "ksa_vat_sales_accounts",
    "fieldtype": "Table",
-   "label": "KSA VAT Accounts",
-   "options": "KSA VAT Account",
+   "label": "KSA VAT Sales Accounts",
+   "options": "KSA VAT Sales Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ksa_vat_purchase_accounts",
+   "fieldtype": "Table",
+   "label": "KSA VAT Purchase Accounts",
+   "options": "KSA VAT Purchase Account",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-07-13 08:52:51.329079",
+ "modified": "2021-07-13 09:17:58.194208",
  "modified_by": "Administrator",
  "module": "KSA VAT",
  "name": "KSA VAT Setting",
