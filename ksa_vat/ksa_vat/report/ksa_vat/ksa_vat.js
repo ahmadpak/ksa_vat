@@ -3,6 +3,9 @@
 /* eslint-disable */
 
 frappe.query_reports["KSA VAT"] = {
+	onload() {
+		frappe.breadcrumbs.add('Accounts');	
+	},
 	"filters": [
 		{
 			"fieldname": "company",

@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('KSA VAT Setting', {
-	// refresh: function(frm) {
-
-	// }
+	onload: function(frm) {
+		frappe.breadcrumbs.add('Accounts', 'KSA VAT Setting');
+	}
 });
