@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe import _
+from frappe.utils import get_url_to_list
 from erpnext.controllers.taxes_and_totals import get_itemised_tax_breakup_data, get_rounded_tax_amount
 from redis.client import int_or_none
 
@@ -45,6 +46,11 @@ def get_data(filters):
 
 	# Get tax category and Account
 	company = filters.get('company')
+	if frappe.db.exists('KSA VAT Setting', company) != True:
+		url = get_url_to_list('KSA VAT Setting')
+		frappe.msgprint(f'Create <a href="{url}">KSA VAT Setting</a> for this company')
+		return data
+
 	ksa_vat_setting = frappe.get_doc('KSA VAT Setting', company)
 	
 	# Sales Heading
