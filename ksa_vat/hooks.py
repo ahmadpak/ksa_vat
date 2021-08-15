@@ -89,13 +89,11 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Company": {
+		"on_update": "ksa_vat.ksa_vat.setup.operations.setup_ksa_vat_setting.create_ksa_vat_setting"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
