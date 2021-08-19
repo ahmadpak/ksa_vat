@@ -17,7 +17,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Reports",
+   "label": "Simplified KSA VAT",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -26,19 +26,11 @@
    "dependencies": "GL Entry",
    "hidden": 0,
    "is_query_report": 1,
-   "label": "KSA VAT",
+   "label": "KSA VAT Report",
    "link_to": "KSA VAT",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Taxes",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
   },
   {
    "hidden": 0,
@@ -50,7 +42,7 @@
    "type": "Link"
   }
  ],
- "modified": "2021-08-01 11:50:04.622038",
+ "modified": "2021-08-19 21:12:25.883061",
  "modified_by": "Administrator",
  "module": "KSA VAT",
  "name": "KSA VAT",
