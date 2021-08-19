@@ -167,7 +167,7 @@ def get_tax_amount(item_code, account_head, doctype, parent):
 	}, 'item_wise_tax_detail')
 
 	tax_amount = 0
-	if len(item_wise_tax_detail) > 0:
+	if item_wise_tax_detail and len(item_wise_tax_detail) > 0:
 		item_wise_tax_detail = json.loads(item_wise_tax_detail)
 		for key, value in item_wise_tax_detail.items():
 			if key == item_code:
