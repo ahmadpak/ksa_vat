@@ -1,3 +1,25 @@
+## KSA E-Invoicing
+
+
+
+On creation of Sales Invoice. A qr code image will be generating and attached to the document. The QR code can we accessed in the print format. Scanning the QR Code will enable users to view the Sales Invoice default print format without logging into the system
+
+<img src="README.assets/image-20210907130835812.png" alt="image-20210907130835812" style="zoom:50%;" />
+
+
+
+Print Format view for the QR Code
+
+<img src="README.assets/image-20210907131002918.png" alt="image-20210907131002918" style="zoom:50%;" />
+
+
+
+Use the QR code in the Print format
+
+![Screenshot 2021-09-07 at 1.11.42 PM](README.assets/Screenshot%202021-09-07%20at%201.11.42%20PM.png)
+
+
+
 ## Simplified KSA VAT Management and Reporting
 
 This app manages to generate report for the **VAT on Sales** and **VAT on Purchases** for Saudi Arab

@@ -51,7 +51,7 @@ def create_ksa_vat_setting(self, method):
 
         ksa_vat_setting.save()
 
-def make_custom_fields(self, method):
+def make_custom_fields():
     qr_code_field = dict(
         fieldname='qr_code', 
         label='QR Code', 
