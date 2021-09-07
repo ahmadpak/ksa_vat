@@ -1,6 +1,7 @@
 import frappe
 import os
 import json
+from frappe.custom.doctype.custom_field.custom_field import create_custom_field
 
 def create_ksa_vat_setting(self, method):
     """
@@ -15,6 +16,7 @@ def create_ksa_vat_setting(self, method):
     })
 
     if len(company_list) == 1 and len(ksa_vat_setting) == 0:
+        make_custom_fields()
         file_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'ksa_vat_settings.json')
         with open(file_path, 'r') as json_file:
             account_data = json.load(json_file)
@@ -48,3 +50,12 @@ def create_ksa_vat_setting(self, method):
                     })
 
         ksa_vat_setting.save()
+
+def make_custom_fields(self, method):
+    qr_code_field = dict(
+        fieldname='qr_code', 
+        label='QR Code', 
+        fieldtype='Attach Image', 
+        read_only=1, no_copy=1, hidden=1)
+    
+    create_custom_field('Sales Invoice', qr_code_field)
