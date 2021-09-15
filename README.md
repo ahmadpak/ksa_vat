@@ -20,6 +20,10 @@ Use the QR code in the Print format
 
 
 
+Simplified VAT Invoice
+
+![image-20210915195407288](README.assets/image-20210915195407288.png)
+
 ## Simplified KSA VAT Management and Reporting
 
 This app manages to generate report for the **VAT on Sales** and **VAT on Purchases** for Saudi Arab

@@ -44,8 +44,8 @@ def create_qr_code(doc, method):
 			_file = frappe.get_doc({
 				"doctype": "File",
 				"file_name": filename,
-				"is_private": 0,
-				"content": qr_image.getvalue()
+				"content": qr_image.getvalue(),
+				"is_private": 1
 			})
 
 			_file.save()
@@ -69,7 +69,9 @@ def delete_qr_code_file(doc, method):
 	if hasattr(doc, 'qr_code'):
 		if doc.get('qr_code'):
 			file_doc = frappe.get_list('File', {
-				'file_url': doc.qr_code
+				'file_url': doc.qr_code,
+				'attached_to_doctype': doc.doctype,
+				'attached_to_name': doc.name
 			})
 			if len(file_doc):
 				frappe.delete_doc('File', file_doc[0].name)
