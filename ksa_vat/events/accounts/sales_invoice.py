@@ -44,8 +44,8 @@ def create_qr_code(doc, method):
 			_file = frappe.get_doc({
 				"doctype": "File",
 				"file_name": filename,
-				"is_private": 0,
-				"content": qr_image.getvalue()
+				"content": qr_image.getvalue(),
+				"is_private": 1
 			})
 
 			_file.save()
