@@ -176,6 +176,13 @@ user_data_fields = [
 # ]
 
 fixtures = [
-	'Tax Category'
+	{
+		'dt': 'Custom Field',
+		'filters': {
+			'name': ['in', [
+				'Sales Invoice-qr_code'
+			]]
+		}
+	}
 ]
 
