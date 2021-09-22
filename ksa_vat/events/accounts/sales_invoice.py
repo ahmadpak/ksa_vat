@@ -4,9 +4,14 @@ from erpnext import get_region
 from pyqrcode import create as qr_create
 import io
 import os
+import json
+
 
 def after_insert(doc, method=None):
 	create_qr_code(doc, method)
+
+def validate(doc, method=None):
+	create_item_consolidated_tax(doc)
 
 def create_qr_code(doc, method):
 	"""Create QR Code after inserting Sales Inv
@@ -80,3 +85,28 @@ def delete_qr_code_file(doc, method):
 
 def create_item_consolidated_tax(doc):
 	taxes = doc.taxes
+	consolidated_taxes = {}
+
+	for row in taxes:
+		item_wise_tax = row.item_wise_tax_detail
+		item_wise_tax = json.loads(item_wise_tax)
+		
+		for key in item_wise_tax:
+			item = item_wise_tax[key]
+			if item[0] > 0:
+				if key in consolidated_taxes:
+					consolidated_taxes[key]["tax"] += item[0]
+					consolidated_taxes[key]["amount"] += item[1]
+				else:
+					consolidated_taxes[key] = {
+						"tax": item[0],
+						"amount": item[1]
+					}
+				
+	for key in consolidated_taxes:
+		row = consolidated_taxes[key]
+		doc.append("consolidated_item_taxes", {
+			"item_code": key,
+			"consolidated_tax_ratio": row["tax"],
+			"consolidated_tax_amount": row["amount"],
+		})

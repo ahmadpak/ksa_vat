@@ -95,6 +95,7 @@ doc_events = {
 	},
 	"Sales Invoice": {
 		"after_insert": "ksa_vat.events.accounts.sales_invoice.after_insert",
+		"validate": "ksa_vat.events.accounts.sales_invoice.validate",
 		"on_trash": "ksa_vat.events.accounts.sales_invoice.delete_qr_code_file"
 	}
 }
