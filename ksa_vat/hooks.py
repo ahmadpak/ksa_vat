@@ -181,7 +181,8 @@ fixtures = [
         'filters': {
             'name': ['in', [
                 'Sales Invoice-qr_code',
-                'Company-company_name_in_arabic'
+                'Company-company_name_in_arabic',
+                'Address-address_in_arabic',
             ]]
         }
     }
