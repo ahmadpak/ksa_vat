@@ -5,6 +5,8 @@ from pyqrcode import create as qr_create
 import io
 import os
 
+def after_insert(doc, method=None):
+	create_qr_code(doc, method)
 
 def create_qr_code(doc, method):
 	"""Create QR Code after inserting Sales Inv
@@ -75,3 +77,6 @@ def delete_qr_code_file(doc, method):
 			})
 			if len(file_doc):
 				frappe.delete_doc('File', file_doc[0].name)
+
+def create_item_consolidated_tax(doc):
+	taxes = doc.taxes

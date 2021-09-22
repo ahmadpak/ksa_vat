@@ -1,0 +1,41 @@
+{
+ "actions": [],
+ "creation": "2021-09-22 14:11:17.016198",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "consolidated_tax_ratio",
+  "consolidated_tax_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "consolidated_tax_ratio",
+   "fieldtype": "Percent",
+   "label": "Consolidated Tax Ratio"
+  },
+  {
+   "fieldname": "consolidated_tax_amount",
+   "fieldtype": "Currency",
+   "label": "Consolidated Tax Amount"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2021-09-22 14:13:18.470832",
+ "modified_by": "Administrator",
+ "module": "KSA VAT",
+ "name": "Item Consolidated Tax",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

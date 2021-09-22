@@ -94,7 +94,7 @@ doc_events = {
 		"on_update": "ksa_vat.ksa_vat.setup.operations.setup_ksa_vat_setting.create_ksa_vat_setting"
 	},
 	"Sales Invoice": {
-		"after_insert": "ksa_vat.events.accounts.sales_invoice.create_qr_code",
+		"after_insert": "ksa_vat.events.accounts.sales_invoice.after_insert",
 		"on_trash": "ksa_vat.events.accounts.sales_invoice.delete_qr_code_file"
 	}
 }
@@ -180,7 +180,8 @@ fixtures = [
 		'dt': 'Custom Field',
 		'filters': {
 			'name': ['in', [
-				'Sales Invoice-qr_code'
+				'Sales Invoice-qr_code',
+				'Sales Invoice-consolidated_item_taxes',
 			]]
 		}
 	}
