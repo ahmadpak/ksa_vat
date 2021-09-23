@@ -188,8 +188,8 @@ fixtures = [
     }
 ]
 
-jenv = {
+jinja = {
     'methods': [
-        'string_to_json:ksa_vat.jinja.utils.string_to_json'
+        'ksa_vat.jinja.utils.string_to_json'
     ]
 }
