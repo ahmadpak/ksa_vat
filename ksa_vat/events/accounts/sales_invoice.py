@@ -4,7 +4,7 @@ from erpnext import get_region
 from pyqrcode import create as qr_create
 import io
 import os
-
+import json
 
 def create_qr_code(doc, method):
 	"""Create QR Code after inserting Sales Inv
@@ -35,6 +35,7 @@ def create_qr_code(doc, method):
 			
 			# creating qr code for the url
 			url = f"{ frappe.utils.get_url() }/{ doc.doctype }/{ doc.name }?format={ default_print_format or 'Standard' }&_lang={ language }&key={ doc.get_signature() }"
+			url = url.replace(" ", "+")
 			qr_image = io.BytesIO()
 			url = qr_create(url, error='L')
 			url.png(qr_image, scale=2, quiet_zone=1)
