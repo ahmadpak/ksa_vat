@@ -35,7 +35,7 @@ def create_qr_code(doc, method):
 			
 			# creating qr code for the url
 			url = f"{ frappe.utils.get_url() }/{ doc.doctype }/{ doc.name }?format={ default_print_format or 'Standard' }&_lang={ language }&key={ doc.get_signature() }"
-			url = url.replace(" ", "+")
+			url = url.replace(" ", "%20")
 			qr_image = io.BytesIO()
 			url = qr_create(url, error='L')
 			url.png(qr_image, scale=2, quiet_zone=1)
