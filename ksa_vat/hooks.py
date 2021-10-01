@@ -90,13 +90,13 @@ app_license = "MIT"
 # Hook on document methods and events
 
 doc_events = {
-	"Company": {
-		"on_update": "ksa_vat.ksa_vat.setup.operations.setup_ksa_vat_setting.create_ksa_vat_setting"
-	},
-	"Sales Invoice": {
-		"after_insert": "ksa_vat.events.accounts.sales_invoice.create_qr_code",
-		"on_trash": "ksa_vat.events.accounts.sales_invoice.delete_qr_code_file"
-	}
+    "Company": {
+        "on_update": "ksa_vat.ksa_vat.setup.operations.setup_ksa_vat_setting.create_ksa_vat_setting"
+    },
+    "Sales Invoice": {
+        "after_insert": "ksa_vat.events.accounts.sales_invoice.create_qr_code",
+        "on_trash": "ksa_vat.events.accounts.sales_invoice.delete_qr_code_file"
+    }
 }
 
 # Scheduled Tasks
@@ -148,24 +148,24 @@ doc_events = {
 # --------------------
 
 user_data_fields = [
-	{
-		"doctype": "{doctype_1}",
-		"filter_by": "{filter_by}",
-		"redact_fields": ["{field_1}", "{field_2}"],
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_2}",
-		"filter_by": "{filter_by}",
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_3}",
-		"strict": False,
-	},
-	{
-		"doctype": "{doctype_4}"
-	}
+    {
+        "doctype": "{doctype_1}",
+        "filter_by": "{filter_by}",
+        "redact_fields": ["{field_1}", "{field_2}"],
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_2}",
+        "filter_by": "{filter_by}",
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_3}",
+        "strict": False,
+    },
+    {
+        "doctype": "{doctype_4}"
+    }
 ]
 
 # Authentication and authorization
@@ -176,13 +176,20 @@ user_data_fields = [
 # ]
 
 fixtures = [
-	{
-		'dt': 'Custom Field',
-		'filters': {
-			'name': ['in', [
-				'Sales Invoice-qr_code'
-			]]
-		}
-	}
+    {
+        'dt': 'Custom Field',
+        'filters': {
+            'name': ['in', [
+                'Sales Invoice-qr_code',
+                'Company-company_name_in_arabic',
+                'Address-address_in_arabic',
+            ]]
+        }
+    }
 ]
 
+jenv = {
+    'methods': [
+        'string_to_json:ksa_vat.jinja.utils.string_to_json'
+    ]
+}
