@@ -2,7 +2,7 @@
 
 
 
-On creation of Sales Invoice. A qr code image will be generating and attached to the document. The QR code can we accessed in the print format. Scanning the QR Code will enable users to view the Sales Invoice default print format without logging into the system
+On creation of Sales Invoice.  QR-Code image will be generating and attached to the document. The QR code can we accessed in the print format. Scanning the QR Code will enable users to view the Sales Invoice default print format without logging into the system
 
 <img src="README.assets/image-20210907130835812.png" alt="image-20210907130835812" style="zoom:50%;" />
 
