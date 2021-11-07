@@ -40,28 +40,28 @@ def create_qr_code(doc, method):
 			
 			#qr text
 			qr_text = '''
-Vendor Name
+Vendor Name / المورد
 {0}
 ____________________________
-VAT Registration Number
+VAT ID / الرقم الضريبي
 {1}
 ____________________________			
-Date & Time
+Date & Time / التاريخ الوقت
 {2} : {3}
 ____________________________			
-Total VAT Amount
+Total VAT Amount / اجمالي الضريبة
 {4}
 ____________________________			
-Total Amount
+Total Amount / مجموع الاجمالي
 {5} 
 ____________________________
-URL
+URL / الرابط
 {6}
 			'''.format(doc.company, doc.tax_id, doc.posting_date, doc.posting_time,
-                            doc.base_total_taxes_and_charges, doc.grand_total, url).encode('latin-1')
+                            doc.base_total_taxes_and_charges, doc.grand_total, url)
 
 			qr_image = io.BytesIO()
-			url = qr_create(qr_text, error='L')
+			url = qr_create(qr_text, error='L', encoding='utf-8')
 			url.png(qr_image, scale=2, quiet_zone=1)
 			
 			# making file
