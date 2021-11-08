@@ -36,8 +36,32 @@ def create_qr_code(doc, method):
 			# creating qr code for the url
 			url = f"{ frappe.utils.get_url() }/{ doc.doctype }/{ doc.name }?format={ default_print_format or 'Standard' }&_lang={ language }&key={ doc.get_signature() }"
 			url = url.replace(" ", "%20")
+			
+			
+			#qr text
+			qr_text = '''
+Vendor Name / المورد
+{0}
+____________________________
+VAT ID / الرقم الضريبي
+{1}
+____________________________			
+Date & Time / التاريخ الوقت
+{2} : {3}
+____________________________			
+Total VAT Amount / اجمالي الضريبة
+{4}
+____________________________			
+Total Amount / مجموع الاجمالي
+{5} 
+____________________________
+URL / الرابط
+{6}
+			'''.format(doc.company, doc.tax_id, doc.posting_date, doc.posting_time,
+                            doc.base_total_taxes_and_charges, doc.grand_total, url)
+
 			qr_image = io.BytesIO()
-			url = qr_create(url, error='L', encoding='utf-8')
+			url = qr_create(qr_text, error='L', encoding='utf-8')
 			url.png(qr_image, scale=2, quiet_zone=1)
 			
 			# making file
