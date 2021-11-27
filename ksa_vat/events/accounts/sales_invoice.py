@@ -3,6 +3,7 @@ from frappe import _
 from frappe.utils.data import add_to_date, get_time, getdate
 from erpnext import get_region
 from pyqrcode import create as qr_create
+from base64 import b64encode
 import io
 import os
 from base64 import b64encode
@@ -29,7 +30,7 @@ def create_qr_code(doc, method):
 
 	for field in fields:
 		if field.fieldname == 'qr_code' and field.fieldtype == 'Attach Image':
-			# Creating qr code
+			# creating qr code for the Sales Invoice
 			''' TLV conversion for
 			1. Seller's Name
 			2. VAT Number
