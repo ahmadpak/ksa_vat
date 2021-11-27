@@ -1,8 +1,12 @@
 import frappe
+from frappe import _
+from frappe.utils.data import add_to_date, get_time, getdate
 from erpnext import get_region
 from pyqrcode import create as qr_create
 import io
 import os
+from base64 import b64encode
+
 
 def create_qr_code(doc, method):
 	"""Create QR Code after inserting Sales Inv
@@ -25,16 +29,76 @@ def create_qr_code(doc, method):
 
 	for field in fields:
 		if field.fieldname == 'qr_code' and field.fieldtype == 'Attach Image':
-			# creating qr code for the Sales Invoice
-			xml = """<QRCode>
-				<SellerName>{customer}</SellerName>
-				<DateAndTime>{posting_date}</DateAndTime>
-				<InvoiceTotal>{invoice_total}</InvoiceTotal>
-				<VATTotal>{vat_total}</VATTotal>
-			</QRCode>""".format(customer=doc.customer, posting_date=doc.posting_date, invoice_total=doc.grand_total, vat_total=doc.total_taxes_and_charges)
+			# Creating qr code
+			''' TLV conversion for
+			1. Seller's Name
+			2. VAT Number
+			3. Time Stamp
+			4. Invoice Amount
+			5. VAT Amount
+			'''
+			tlv_array = []
+			# Sellers Name
+
+			seller_name = frappe.db.get_value(
+				'Company',
+				doc.company,
+				'company_name_in_arabic')
+
+			if not seller_name:
+				frappe.throw(_('Arabic name missing for {} in the company document'.format(doc.company)))
+
+			tag = bytes([1]).hex()
+			length = bytes([len(seller_name.encode('utf-8'))]).hex()
+			value = seller_name.encode('utf-8').hex()
+			tlv_array.append(''.join([tag, length, value]))
+
+			# VAT Number
+			tax_id = frappe.db.get_value('Company', doc.company, 'tax_id')
+			if not tax_id:
+				frappe.throw(_('Tax ID missing for {} in the company document'.format(doc.company)))
+
+			tag = bytes([2]).hex()
+			length = bytes([len(tax_id)]).hex()
+			value = tax_id.encode('utf-8').hex()
+			tlv_array.append(''.join([tag, length, value]))
+
+			# Time Stamp
+			posting_date = getdate(doc.posting_date)
+			time = get_time(doc.posting_time)
+			seconds = time.hour * 60 * 60 + time.minute * 60 + time.second
+			time_stamp = add_to_date(posting_date, seconds=seconds)
+			time_stamp = time_stamp.strftime('%Y-%m-%dT%H:%M:%SZ')
+
+			tag = bytes([3]).hex()
+			length = bytes([len(time_stamp)]).hex()
+			value = time_stamp.encode('utf-8').hex()
+			tlv_array.append(''.join([tag, length, value]))
+
+			# Invoice Amount
+			invoice_amount = str(doc.total)
+			tag = bytes([4]).hex()
+			length = bytes([len(invoice_amount)]).hex()
+			value = invoice_amount.encode('utf-8').hex()
+			tlv_array.append(''.join([tag, length, value]))
+
+			# VAT Amount
+			vat_amount = str(doc.total_taxes_and_charges)
+
+			tag = bytes([5]).hex()
+			length = bytes([len(vat_amount)]).hex()
+			value = vat_amount.encode('utf-8').hex()
+			tlv_array.append(''.join([tag, length, value]))
+
+			# Joining bytes into one
+			tlv_buff = ''.join(tlv_array)
+
+			# base64 conversion for QR Code
+			base64_string = b64encode(bytes.fromhex(tlv_buff)).decode()
+
 			qr_image = io.BytesIO()
-			xml = qr_create(xml, error='L')
-			xml.png(qr_image, scale=2, quiet_zone=1)
+			url = qr_create(base64_string, error='L')
+			url.png(qr_image, scale=2, quiet_zone=1)
 
 			# making file
 			filename = f"QR-CODE-{doc.name}.png".replace(os.path.sep, "__")
@@ -52,6 +116,7 @@ def create_qr_code(doc, method):
 			doc.notify_update()
 
 			break
+
 
 def delete_qr_code_file(doc, method):
 	"""Delete QR Code on deleted sales invoice"""
