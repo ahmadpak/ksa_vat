@@ -106,7 +106,7 @@ def create_qr_code(doc, method):
 				"doctype": "File",
 				"file_name": filename,
 				"content": qr_image.getvalue(),
-				"is_private": 1
+				"is_private": 0
 			})
 
 			_file.save()
