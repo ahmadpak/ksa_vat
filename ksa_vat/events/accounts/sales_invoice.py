@@ -65,7 +65,7 @@ def create_qr_code(doc, method):
             vat_amount = f"Vat Total: {vat_amount}"
 
             # Invoice Amount
-            invoice_amount = str(doc.total)
+            invoice_amount = str(doc.grand_total)
             invoice_amount = f"Invoice Total: {invoice_amount}"
 
             # Invoice Customer
