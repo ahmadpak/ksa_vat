@@ -112,6 +112,7 @@ def create_qr_code(doc, method):
 			_file.save()
 
 			# assigning to document
+			doc.db_set('qr_code_hash', base64_string)
 			doc.db_set('qr_code', _file.file_url)
 			doc.notify_update()
 
