@@ -19,7 +19,7 @@ def create_qr_code(doc, method):
 	# if QR Code field not present, do nothing
 	if not hasattr(doc, 'qr_code'):
 		return
-
+	
 	# Don't create QR Code if it already exists
 	qr_code = doc.get("qr_code")
 	if qr_code and frappe.db.exists({"doctype": "File", "file_url": qr_code}):
@@ -108,18 +108,18 @@ def create_qr_code(doc, method):
 				"content": qr_image.getvalue(),
 				"is_private": 1
 			})
-
-			_file.save()
-
+			
+			_file.insert()
+			
 			# assigning to document
 			doc.db_set('qr_code_hash', base64_string)
 			doc.db_set('qr_code', _file.file_url)
-			doc.notify_update()
-
+			
 			break
 
 
 def delete_qr_code_file(doc, method):
+	return
 	"""Delete QR Code on deleted sales invoice"""
 
 	region = get_region(doc.company)
