@@ -91,7 +91,7 @@ app_license = "MIT"
 
 doc_events = {
     "Sales Invoice": {
-        "after_insert": "ksa_vat.events.accounts.sales_invoice.create_qr_code",
+        "validate": "ksa_vat.events.accounts.sales_invoice.create_qr_code",
         "on_trash": "ksa_vat.events.accounts.sales_invoice.delete_qr_code_file"
     }
 }
