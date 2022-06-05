@@ -7,7 +7,7 @@ On creation of Sales Invoice.  QR-Code image will be generating and attached to 
 <img src="README.assets/image-20210907130835812.png" alt="image-20210907130835812" style="zoom:50%;" />
 
 
-Print Format view for the QR Code
+Print Format view for the QR Code:
 
 <img src="README.assets/image-20210907131002918.png" alt="image-20210907131002918" style="zoom:50%;" />
 
